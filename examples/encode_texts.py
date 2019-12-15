@@ -35,6 +35,7 @@ encoding = model(tokenized)
 
 print('First 5 dimensions for sentence: {}'.format(TEST_SENTENCES[0]))
 print(encoding[0,:5])
+print(len(encoding[0]))
 
 # Now you could visualize the encodings to see differences,
 # run a logistic regression classifier on top,

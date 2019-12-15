@@ -15,6 +15,7 @@ import emoji
 from torchmoji.sentence_tokenizer import SentenceTokenizer
 from torchmoji.model_def import torchmoji_emojis
 from torchmoji.global_variables import PRETRAINED_PATH, VOCAB_PATH
+from torchmoji.visualize import read_plot_alignment_matrices
 
 # Emoji map in emoji_overview.png
 EMOJIS = ":joy: :unamused: :weary: :sob: :heart_eyes: \
@@ -48,11 +49,14 @@ if __name__ == "__main__":
     st = SentenceTokenizer(vocabulary, args.maxlen)
 
     # Loading model
-    model = torchmoji_emojis(PRETRAINED_PATH)
+    model = torchmoji_emojis(PRETRAINED_PATH, return_attention=True)
     # Running predictions
     tokenized, _, _ = st.tokenize_sentences([args.text])
     # Get sentence probability
-    prob = model(tokenized)[0]
+    print(model(tokenized))
+    prob, attn_score = model(tokenized)
+    prob = prob[0]
+    print(attn_score.shape)
 
     # Top emoji id
     emoji_ids = top_elements(prob, 5)
@@ -61,3 +65,6 @@ if __name__ == "__main__":
     emojis = map(lambda x: EMOJIS[x], emoji_ids)
 
     print(emoji.emojize("{} {}".format(args.text,' '.join(emojis)), use_aliases=True))
+    # print("{} {}".format(args.text,' '.join(emojis)))
+    # target_labels = ["weight"]
+    # read_plot_alignment_matrices(args.text.split(), target_labels, attn_score)

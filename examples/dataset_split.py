@@ -18,6 +18,7 @@ import example_helper
 import json
 
 from torchmoji.sentence_tokenizer import SentenceTokenizer
+from torchmoji.global_variables import PRETRAINED_PATH, VOCAB_PATH, ROOT_PATH
 
 DATASET = [
     'I am sentence 0',
@@ -45,7 +46,7 @@ INFO_DICTS = [
     {'label': 'sentence 9'},
     ]
 
-with open('../model/vocabulary.json', 'r') as f:
+with open(VOCAB_PATH, 'r') as f:
     vocab = json.load(f)
 st = SentenceTokenizer(vocab, 30)
 

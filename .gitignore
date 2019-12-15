@@ -106,3 +106,5 @@ pytorch_model.bin
 
 # data
 *.csv
+
+.history

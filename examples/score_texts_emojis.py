@@ -5,7 +5,7 @@
 The resulting emoji ids (0-63) correspond to the mapping
 in emoji_overview.png file at the root of the torchMoji repo.
 
-Writes the result to a csv file.
+Writes the result to a csv file..
 """
 from __future__ import print_function, division, unicode_literals
 import example_helper

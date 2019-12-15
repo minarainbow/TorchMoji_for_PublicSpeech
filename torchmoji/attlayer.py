@@ -64,5 +64,5 @@ class Attention(Module):
 
         # get the final fixed vector representations of the sentences
         representations = weighted.sum(dim=1)
-
+        print(attentions)
         return (representations, attentions if self.return_attention else None)

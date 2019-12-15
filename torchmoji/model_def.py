@@ -231,6 +231,7 @@ class TorchMoji(nn.Module):
         input_seqs, _ = pad_packed_sequence(packed_input, batch_first=True)
 
         x, att_weights = self.attention_layer(input_seqs, input_lengths)
+        print("x is ", x)
 
         # output class probabilities or penultimate feature vector
         if not self.feature_output:
@@ -252,8 +253,11 @@ class TorchMoji(nn.Module):
             outputs = outputs.data.numpy()
 
         if self.return_attention:
+            print("here att_weights is", att_weights)
+            print("here outputs is", outputs)
             return outputs, att_weights
         else:
+            print("no att_weights")
             return outputs
 
 
