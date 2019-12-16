@@ -66,7 +66,7 @@ for prob in [prob]:
 
     with open(OUTPUT_PATH, 'w') as csvfile:
         writer = csv.writer(csvfile, delimiter=str(','), lineterminator='\n')
-        writer.writerow(['Text', 'Top5%',
+        writer.writerow(['Text', 
                         'Emoji_1', 'Emoji_2', 'Emoji_3', 'Emoji_4', 'Emoji_5',
                         'Pct_1', 'Pct_2', 'Pct_3', 'Pct_4', 'Pct_5'])
         for i, row in enumerate(scores):

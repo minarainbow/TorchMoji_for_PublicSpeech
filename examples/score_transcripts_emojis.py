@@ -20,7 +20,7 @@ from torchmoji.model_def import torchmoji_emojis
 from torchmoji.global_variables import PRETRAINED_PATH, VOCAB_PATH
 
 
-inputfile = csv.reader(open('/Users/mina/pytorch/audiosetdl/applause.csv','r+'))
+inputfile = csv.reader(open('../TED/transcripts/cheering.csv','r+'))
 
 
 # Emoji map in emoji_overview.png
@@ -57,14 +57,14 @@ model = torchmoji_emojis(PRETRAINED_PATH)
 print('Running predictions.')
 
 
-with open('applause_results.csv','a') as csvfile:
+with open('../TED/results/cheering.csv','a') as csvfile:
     writer = csv.writer(csvfile)
-    # writer.writerow(['Text', 'Top5%',
-    #                 'Emoji_1', 'Emoji_2', 'Emoji_3', 'Emoji_4', 'Emoji_5',
-    #                 'Pct_1', 'Pct_2', 'Pct_3', 'Pct_4', 'Pct_5'])
+    writer.writerow(['Text', 'Top5%',
+                    'Emoji_1', 'Emoji_2', 'Emoji_3', 'Emoji_4', 'Emoji_5',
+                    'Pct_1', 'Pct_2', 'Pct_3', 'Pct_4', 'Pct_5'])
 
     print('Writing results to {}'.format(csvfile))
-    for r in islice(inputfile, 382, None):
+    for r in islice(inputfile, 0, None):
         if len(r) < 2:
             continue
         TEST_SENTENCES = r[1:]
