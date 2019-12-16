@@ -59,7 +59,7 @@ print('Running predictions.')
 
 with open('../kaggle_results.csv','a') as csvfile:
     writer = csv.writer(csvfile)
-    writer.writerow(['Text', 'Top5%',
+    writer.writerow(['Text', 
                     'Emoji_1', 'Emoji_2', 'Emoji_3', 'Emoji_4', 'Emoji_5',
                     'Pct_1', 'Pct_2', 'Pct_3', 'Pct_4', 'Pct_5'])
 
