@@ -20,7 +20,7 @@ from torchmoji.model_def import torchmoji_emojis
 from torchmoji.global_variables import PRETRAINED_PATH, VOCAB_PATH
 
 
-inputfile = csv.reader(open('../TED/transcripts/cheering.csv','r+'))
+inputfile = csv.reader(open('../kaggle_transcripts.csv','r+'))
 
 
 # Emoji map in emoji_overview.png
@@ -57,7 +57,7 @@ model = torchmoji_emojis(PRETRAINED_PATH)
 print('Running predictions.')
 
 
-with open('../TED/results/cheering.csv','a') as csvfile:
+with open('../kaggle_results.csv','a') as csvfile:
     writer = csv.writer(csvfile)
     writer.writerow(['Text', 'Top5%',
                     'Emoji_1', 'Emoji_2', 'Emoji_3', 'Emoji_4', 'Emoji_5',
@@ -65,9 +65,9 @@ with open('../TED/results/cheering.csv','a') as csvfile:
 
     print('Writing results to {}'.format(csvfile))
     for r in islice(inputfile, 0, None):
-        if len(r) < 2:
+        if len(r) < 1:
             continue
-        TEST_SENTENCES = r[1:]
+        TEST_SENTENCES = r
         tokenized, _, _ = st.tokenize_sentences(TEST_SENTENCES)
         prob = model(tokenized)
                         
@@ -77,6 +77,7 @@ with open('../TED/results/cheering.csv','a') as csvfile:
             # at the root of the torchMoji repo.
             scores = []
             for i, t in enumerate(TEST_SENTENCES):
+                print(i, t)
                 if '(' in t:
                     continue
                 t_tokens = tokenized[i]
